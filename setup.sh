@@ -1,0 +1,6 @@
+python main.py
+
+export FLASK_APP=project
+export FLASK_DEBUG=1
+
+flask run

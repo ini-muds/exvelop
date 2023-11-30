@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>サインアップ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div>
+            <a href="{{ url_for('main.posts_list') }}" id="" class="">
+                ホーム
+            </a>
+            {% if not current_user.is_authenticated %}    
+                <a href="{{ url_for('auth.login') }}" id="" class="">
+                    ログイン
+                </a>
+                <a href="{{ url_for('auth.signup') }}" id="" class="">
+                    サインアップ
+                </a>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('main.create_post') }}" id="" class="">
+                    新規投稿
+                </a>
+                <a href="{{ url_for('auth.logout') }}" id="" class="">
+                    ログアウト
+                </a>
+            {% endif %}
+        </div>
+    </header>
+    <section>
+        <div id="" class="">
+            <h1>サインアップ</h1>
+        </div>
+        <div id="" class="">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div id="" class="">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+            {% endwith %}
+            <form  method="POST" action="/signup">
+                <div class="">
+                    <input class="" type="email" name="email" placeholder="Your Email" autofocus="">                
+                </div>
+                <div>
+                    <input class="" name="name" placeholder="Your Name" type="text" autofocus="">
+                </div>
+                <div class="">
+                        <input class="" type="password" name="password" placeholder="Your Password">
+                </div>
+                <button id="" class="">
+                    サインアップ
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

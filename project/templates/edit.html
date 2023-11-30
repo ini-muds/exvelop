@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>編集</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div>
+            <a href="{{ url_for('main.posts_list') }}" id="" class="">
+                ホーム
+            </a>
+            {% if not current_user.is_authenticated %}    
+                <a href="{{ url_for('auth.login') }}" id="" class="">
+                    ログイン
+                </a>
+                <a href="{{ url_for('auth.signup') }}" id="" class="">
+                    サインアップ
+                </a>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('main.create_post') }}" id="" class="">
+                    新規投稿
+                </a>
+                <a href="{{ url_for('auth.logout') }}" id="" class="">
+                    ログアウト
+                </a>
+            {% endif %}
+        </div>
+    </header>
+    <section>
+        <div class="">
+            <h1 class="text-info">コーディングSNS</h1>
+            <h3>編集</h3>
+            <form method="post">
+                <div class="">
+                    <label for="title" class="">タイトル</label>
+                    <input type="text" class="" id="" name="title" maxlength="100" value="{{ post.title }}" required>
+                </div>
+                <div class="">
+                    <label for="description" class="">内容</label>
+                    <textarea class="" name="description" id="" rows="" maxlength="1000" required>{{ post.description }}</textarea>
+                </div>
+                <div class="">
+                    <label for="image_url" class="">画像URL</label>
+                    <textarea class="" name="image_url" id="" rows="" maxlength="200" required>{{ post.image_url }}</textarea>
+                </div>
+                <div class="">
+                    <label for="code" class="">コード</label>
+                    <textarea class="" name="code" id="" rows="" maxlength="1000" required>{{ post.code }}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">投稿</button>
+                <a href="{{ url_for('main.posts_list') }}" class="btn btn-info" role="button">一覧画面に戻る</a>
+            </form>
+        </div>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>

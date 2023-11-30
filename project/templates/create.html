@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>新規投稿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div>
+            <a href="{{ url_for('main.posts_list') }}" id="" class="">
+                ホーム
+            </a>
+            {% if not current_user.is_authenticated %}    
+                <a href="{{ url_for('auth.login') }}" id="" class="">
+                    ログイン
+                </a>
+                <a href="{{ url_for('auth.signup') }}" id="" class="">
+                    サインアップ
+                </a>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('main.create_post') }}" id="" class="">
+                    新規投稿
+                </a>
+                <a href="{{ url_for('auth.logout') }}" id="" class="">
+                    ログアウト
+                </a>
+            {% endif %}
+        </div>
+    </header>
+    <section>
+        <div class="">
+            <h1 class="text-info">コーディングSNS</h1>
+            <h3>新規投稿</h3>
+            <form method="post">
+                <div class="">
+                    <label for="title" class="">タイトル</label>
+                    <input type="text" class="" id="title" name="title" maxlength="100" required>
+                </div>
+                <div class="">
+                    <label for="description" class="">内容</label>
+                    <textarea class="" name="description" id="description" rows="4" maxlength="1000" required></textarea>
+                </div>
+                <div class="">
+                    <label for="image_url" class="">画像URL</label>
+                    <input type="text" class="" id="image_url" name="image_url" maxlength="200">
+                </div>
+                <div class="">
+                    <label for="code" class="">コード</label>
+                    <textarea class="" name="code" id="code" rows="4" maxlength="1000"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">投稿する</button>
+                <a href="{{ url_for('main.posts_list') }}" class="btn btn-info" role="button">一覧画面に戻る</a>
+            </form>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>

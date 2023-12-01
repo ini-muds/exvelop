@@ -3,59 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>編集</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <header>
-        <div>
-            <a href="{{ url_for('main.posts_list') }}" id="" class="">
-                ホーム
-            </a>
-            {% if not current_user.is_authenticated %}    
-                <a href="{{ url_for('auth.login') }}" id="" class="">
-                    ログイン
-                </a>
-                <a href="{{ url_for('auth.signup') }}" id="" class="">
-                    サインアップ
-                </a>
+    <header class="site-header">
+        <nav class="navigation">
+            <a href="{{ url_for('main.posts_list') }}" class="nav-link">ホーム</a>
+            {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('auth.login') }}" class="nav-link">ログイン</a>
+                <a href="{{ url_for('auth.signup') }}" class="nav-link">サインアップ</a>
+            {% else %}
+                <a href="{{ url_for('main.create_post') }}" class="nav-link">新規投稿</a>
+                <a href="{{ url_for('auth.logout') }}" class="nav-link">ログアウト</a>
             {% endif %}
-            {% if current_user.is_authenticated %}
-                <a href="{{ url_for('main.create_post') }}" id="" class="">
-                    新規投稿
-                </a>
-                <a href="{{ url_for('auth.logout') }}" id="" class="">
-                    ログアウト
-                </a>
-            {% endif %}
-        </div>
+        </nav>
     </header>
-    <section>
-        <div class="">
-            <h1 class="text-info">コーディングSNS</h1>
-            <h3>編集</h3>
-            <form method="post">
-                <div class="">
-                    <label for="title" class="">タイトル</label>
-                    <input type="text" class="" id="" name="title" maxlength="100" value="{{ post.title }}" required>
+    <section class="form-section">
+        <div class="form-container">
+            <h1 class="section-title">コーディングSNS</h1>
+            <h3 class="form-title">編集</h3>
+            <form method="post" class="edit-form">
+                <div class="form-group">
+                    <label for="title" class="form-label">タイトル</label>
+                    <input type="text" class="form-input" id="title" name="title" maxlength="100" value="{{ post.title }}" required>
                 </div>
-                <div class="">
-                    <label for="description" class="">内容</label>
-                    <textarea class="" name="description" id="" rows="" maxlength="1000" required>{{ post.description }}</textarea>
+                <div class="form-group">
+                    <label for="description" class="form-label">内容</label>
+                    <textarea class="form-textarea" name="description" id="description" rows="4" maxlength="1000" required>{{ post.description }}</textarea>
                 </div>
-                <div class="">
-                    <label for="image_url" class="">画像URL</label>
-                    <textarea class="" name="image_url" id="" rows="" maxlength="200" required>{{ post.image_url }}</textarea>
+                <div class="form-group">
+                    <label for="image_url" class="form-label">画像URL</label>
+                    <input type="text" class="form-input" id="image_url" name="image_url" maxlength="200" value="{{ post.image_url }}" required>
                 </div>
-                <div class="">
-                    <label for="code" class="">コード</label>
-                    <textarea class="" name="code" id="" rows="" maxlength="1000" required>{{ post.code }}</textarea>
+                <div class="form-group">
+                    <label for="code" class="form-label">コード</label>
+                    <textarea class="form-textarea" name="code" id="code" rows="4" maxlength="1000" required>{{ post.code }}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">投稿</button>
-                <a href="{{ url_for('main.posts_list') }}" class="btn btn-info" role="button">一覧画面に戻る</a>
+                <a href="{{ url_for('main.posts_list') }}" class="btn btn-secondary" role="button">一覧画面に戻る</a>
             </form>
         </div>
     </section>
-    
-    <script src="script.js"></script>
 </body>
 </html>

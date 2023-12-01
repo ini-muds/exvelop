@@ -1,23 +1,20 @@
-/* 基本的なフォントと背景色を設定 */
+/* 全体のベーススタイル */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #f7f7f7;
-    color: #333;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
-/* ヘッダーのスタイル */
 header {
     background-color: #55c500; /* Qiitaの特徴的な緑色 */
-    color: white;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* ロゴとナビゲーションのリンク */
 header h1, header nav a {
     color: white;
     text-decoration: none;
@@ -25,20 +22,21 @@ header h1, header nav a {
 }
 
 /* 検索バーのスタイル */
-.search-bar {
+.search-container {
     display: flex;
-    margin: 20px 0;
+    justify-content: center; /* 中央寄せにする */
+    padding: 20px 0; /* 上下の余白 */
 }
 
-.search-bar input[type="text"] {
+.search-box {
     flex-grow: 1;
     padding: 10px;
-    border: none;
+    border: 1px solid #ddd;
     border-radius: 5px;
     margin-right: 10px;
 }
 
-.search-bar button {
+.search-button {
     padding: 10px 20px;
     background-color: #4CAF50; /* 濃い緑色のボタン */
     color: white;
@@ -47,39 +45,494 @@ header h1, header nav a {
     border-radius: 5px;
 }
 
-/* メインコンテンツとサイドバーのレイアウト */
-.content {
+/* ナビゲーションリンクのスタイル */
+.navigation {
     display: flex;
+    justify-content: center; /* リンクを中央寄せにする */
+    padding: 10px 0;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #4CAF50; /* ホバー時に背景色を変える */
 }
 
 /* 投稿リストのスタイル */
+#postsList {
+    width: 70%;
+    margin: 20px auto; /* 上下のマージンを20pxに設定し、左右のマージンを自動で中央寄せ */
+    padding-top: 20px; /* 投稿リストの上部の余白 */
+}
+
+/* 各投稿のスタイル */
 .post {
     background-color: white;
+    margin-bottom: 20px; /* 投稿間の余白 */
     padding: 20px;
-    margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 子要素を左揃えに */
 }
 
-/* サイドバーのスタイル */
-.sidebar {
-    margin-left: 20px;
-    width: 300px;
+/* 投稿のテキスト要素スタイル */
+#postsList .post-author,
+#postsList .post-title,
+#postsList .post-timestamp {
+    text-align: left; /* テキストを左揃えに */
+    width: 100%; /* 幅を100%に設定して余白を含めた全体幅に */
+    margin-top: 8px; 
+    margin-bottom: 8px;
 }
 
-/* サイドバーの広告などのカード */
-.card {
+#postsList .post-actions {
+    width: 100%; /* アクションボタンを含むコンテナの幅を100%に設定 */
+    display: flex;
+    justify-content: flex-start; /* アクションボタンを左揃えに */
+}
+
+#postsList .post-actions a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #0366d6;
+    font-size: 14px;
+}
+
+#postsList .post-edit,
+#postsList .post-delete {
+    color: #d9534f;
+}
+
+/* フォーム要素のスタイル */
+.post-form .form-group {
+    margin-bottom: 15px;
+}
+
+.post-form .form-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.post-form .form-control,
+.post-form .form-input,
+.post-form .form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.post-form .form-textarea {
+    resize: vertical; /* ユーザーによるリサイズを縦方向のみに限定 */
+}
+
+/* ボタンのスタイル */
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    margin-left: 10px;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+/* ボタンのホバースタイル */
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* サイトヘッダーのスタイル */
+.site-header {
+    background-color: #55c500;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.navigation .nav-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navigation .nav-link:hover {
+    background-color: #4CAF50;
+}
+
+/* サインアップセクションのスタイル */
+.signup-section {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.signup-container {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.signup-title {
+    margin-bottom: 30px;
+}
+
+.flash-message {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #ffcccc;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+}
+
+/* フォームのスタイル */
+.signup-form .form-group {
+    margin-bottom: 15px;
+}
+
+.signup-form .form-control {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.signup-form .btn-primary {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.login-section {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.login-title {
+    margin-bottom: 30px;
+}
+
+/* フラッシュメッセージのスタイル */
+.flash-message {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #ffcccc;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+}
+
+/* フォームのスタイル */
+.login-form .form-group {
+    margin-bottom: 15px;
+}
+
+.login-form .form-control {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.login-form .btn-primary {
+    width: 80%;
+    padding: 10px;
+    align-items: center;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.form-section {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 600px; /* 幅の最大値を設定 */
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: left; /* テキストを左寄せに */
+}
+
+.section-title {
+    margin-bottom: 20px;
+    color: #55c500; /* タイトルの色を指定 */
+}
+
+.form-title {
+    margin-bottom: 30px;
+}
+
+/* フォーム要素のスタイル */
+.edit-form .form-group {
+    margin-bottom: 15px;
+}
+
+.edit-form .form-label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.edit-form .form-input,
+.edit-form .form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.edit-form .form-textarea {
+    resize: vertical; /* ユーザーによるリサイズを縦方向のみに限定 */
+}
+
+.edit-form .btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    margin-top: 20px; /* 上の余白 */
+    cursor: pointer;
+    display: inline-block; /* インラインブロック要素にする */
+    width: auto; /* 自動的に幅を内容に合わせる */
+}
+
+.edit-form .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    margin-top: 10px; /* 上の余白 */
+    cursor: pointer;
+    display: inline-block; /* インラインブロック要素にする */
+    width: auto; /* 自動的に幅を内容に合わせる */
+}
+
+.new-post-section {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.new-post-container {
+    width: 100%;
+    max-width: 600px; /* 幅の最大値を設定 */
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: left; /* テキストを左寄せに */
+}
+
+.section-title {
+    margin-bottom: 20px;
+    color: #55c500; /* タイトルの色を指定 */
+}
+
+.form-title {
+    margin-bottom: 30px;
+}
+
+/* フォーム要素のスタイル */
+.new-post-form .form-group {
+    margin-bottom: 15px;
+}
+
+.new-post-form .form-label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.new-post-form .form-input,
+.new-post-form .form-textarea {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.new-post-form .form-textarea {
+    resize: vertical; /* ユーザーによるリサイズを縦方向のみに限定 */
+}
+
+/* ボタンのスタイル */
+.new-post-form .btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    margin-top: 20px; /* 上の余白 */
+    cursor: pointer;
+    display: inline-block; /* インラインブロック要素にする */
+    width: auto; /* 自動的に幅を内容に合わせる */
+}
+
+.new-post-form .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    margin-top: 10px; /* 上の余白 */
+    cursor: pointer;
+    display: inline-block; /* インラインブロック要素にする */
+    width: auto; /* 自動的に幅を内容に合わせる */
+}
+
+.detail-section {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.detail-container {
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.section-title {
+    margin-bottom: 20px;
+    color: #55c500;
+}
+
+.post-title {
+    margin-bottom: 30px;
+}
+
+.post-content h4, .post-content h5 {
+    margin-top: 15px;
+}
+
+.post-content p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-info {
+    padding: 10px 20px;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+body.detail-page {
+    /* 背景色やフォントなど、詳細ページ固有の基本スタイルを設定 */
+    background-color: #f7f7f7;
+    /* 必要に応じて他のスタイルを追加 */
+}
+
+
+body.detail-page .detail-section {
+    /* 詳細セクションのレイアウトやスタイリングを定義 */
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+body.detail-page .detail-container {
+    /* コンテナのスタイリング */
+    box-sizing: border-box;
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
     background-color: white;
     padding: 20px;
-    margin-bottom: 20px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* フッターのスタイル */
-footer {
-    background-color: #333;
+body.detail-page .section-title {
+    /* タイトルのスタイル */
+    color: #55c500;
+    margin-bottom: 20px;
+}
+
+body.detail-page .post-content {
+    /* 投稿内容のスタイル */
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+body.detail-page .post-content h4,
+body.detail-page .post-content h5,
+body.detail-page .post-content p {
+    /* 各要素のマージンやフォントサイズを調整 */
+    margin-bottom: 10px;
+}
+
+body.detail-page .btn-info {
+    /* '一覧に戻る'ボタンのスタイル */
+    padding: 10px 15px;
+    background-color: #17a2b8;
     color: white;
-    padding: 20px;
-    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
 }

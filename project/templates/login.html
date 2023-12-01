@@ -3,58 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>ログイン</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <header>
-        <div>
-            <a href="{{ url_for('main.posts_list') }}" id="" class="">
-                ホーム
-            </a>
-            {% if not current_user.is_authenticated %}    
-                <a href="{{ url_for('auth.login') }}" id="" class="">
-                    ログイン
-                </a>
-                <a href="{{ url_for('auth.signup') }}" id="" class="">
-                    サインアップ
-                </a>
+    <header class="site-header">
+        <nav class="navigation">
+            <a href="{{ url_for('main.posts_list') }}" class="nav-link">ホーム</a>
+            {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('auth.login') }}" class="nav-link">ログイン</a>
+                <a href="{{ url_for('auth.signup') }}" class="nav-link">サインアップ</a>
             {% endif %}
             {% if current_user.is_authenticated %}
-                <a href="{{ url_for('main.create_post') }}" id="" class="">
-                    新規投稿
-                </a>
-                <a href="{{ url_for('auth.logout') }}" id="" class="">
-                    ログアウト
-                </a>
+                <a href="{{ url_for('main.create_post') }}" class="nav-link">新規投稿</a>
+                <a href="{{ url_for('auth.logout') }}" class="nav-link">ログアウト</a>
             {% endif %}
-        </div>
+        </nav>
     </header>
-    <section>
-        <div id="" class="">
-            <h2>ログイン</h2>
-        </div>
-        <div id="" class="">
+    <section class="login-section">
+        <div class="login-container">
+            <h2 class="login-title">ログイン</h2>
             {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <div id="" class="">
+                <div class="flash-message">
                     {{ messages[0] }}
                 </div>
             {% endif %}
             {% endwith %}
-            <form  method="POST" action="/login">
-                <div class="">
-                    <input class="" type="email" name="email" placeholder="Your Email" autofocus="">                
+            <form method="POST" action="/login" class="login-form">
+                <div class="form-group">
+                    <input class="form-control" type="email" name="email" placeholder="Your Email" required autofocus>                
                 </div>
-                <div class="">
-                        <input class="" type="password" name="password" placeholder="Your Password">
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Your Password" required>
                 </div>
-                <button id="" class="">
-                    ログイン
-                </button>
+                <button type="submit" class="btn btn-primary">ログイン</button>
             </form>
         </div>
     </section>
-
-    <script src="script.js"></script>
 </body>
 </html>

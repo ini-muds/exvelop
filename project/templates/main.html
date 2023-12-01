@@ -3,62 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>コーディングSNS</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <header>
-        <div>
-            <!-- 検索バー -->
-            <input type="text" id="searchQuery" placeholder="投稿を検索">
-            <button onclick="searchPosts()">検索</button>
-        </div>
-        <div>
-            <a href="{{ url_for('main.posts_list') }}" id="" class="">
-                ホーム
-            </a>
-            {% if not current_user.is_authenticated %}    
-                <a href="{{ url_for('auth.login') }}" id="" class="">
-                    ログイン
-                </a>
-                <a href="{{ url_for('auth.signup') }}" id="" class="">
-                    サインアップ
-                </a>
-            {% endif %}
-            {% if current_user.is_authenticated %}
-                <a href="{{ url_for('main.create_post') }}" id="" class="">
-                    新規投稿
-                </a>
-                <a href="{{ url_for('auth.logout') }}" id="" class="">
-                    ログアウト
-                </a>
-            {% endif %}
-        </div>
-    </header>
-    <div id="app">
         <h1>コーディングSNS</h1>
+        <div class="search-container">
+            <input type="text" id="searchQuery" placeholder="投稿を検索" class="search-box">
+            <button onclick="searchPosts()" class="search-button">検索</button>
+        </div>
+        <nav class="navigation">
+            <a href="{{ url_for('main.posts_list') }}" class="nav-link">ホーム</a>
+            {% if not current_user.is_authenticated %}    
+                <a href="{{ url_for('auth.login') }}" class="nav-link">ログイン</a>
+                <a href="{{ url_for('auth.signup') }}" class="nav-link">サインアップ</a>
+            {% else %}
+                <a href="{{ url_for('main.create_post') }}" class="nav-link">新規投稿</a>
+                <a href="{{ url_for('auth.logout') }}" class="nav-link">ログアウト</a>
+            {% endif %}
+        </nav>
+    </header>
+    
+    <div id="app">
         <!-- 投稿リスト -->
         <div id="postsList">
-            <!-- 投稿はここに表示される -->
             {% for post in posts %}
-                <div>
-                    <h3>作成者：{{ post.name }}</h3>
+                <div class="post">
+                    <div class="post-title">{{ post.title }}</div>
+                    <div class="post-author">作成者：{{ post.name }}</div>
+                    <div class="post-timestamp">作成日時: {{ post.timestamp }}</div>
+                    <div class="post-actions">
+                        <a href="{{ url_for('main.detail_post', id=post.id) }}" class="post-detail">詳細</a>
+                        {% if post.user_id == current_user.id %}
+                            <a href="{{ url_for('main.edit_post', id=post.id) }}" class="post-edit">編集</a>
+                            <a href="{{ url_for('main.delete_post', id=post.id) }}" class="post-delete">削除</a>
+                        {% endif %}
+                    </div>
                 </div>
-                <div>
-                    <h4>{{ post.title }}</h4>
-                </div>
-                <div>
-                    <p>作成日時: {{ post.timestamp }}</p>
-                </div>
-                <div>
-                    <a href="{{ url_for('main.detail_post', id=post.id) }}">書籍詳細</a>
-                </div>
-                {% if post.user_id == current_user.id %}
-                <a href="{{ url_for('main.edit_post', id=post.id) }}" role="button">編集</a>
-                <a href="{{ url_for('main.delete_post', id=post.id) }}" role="button">削除</a>
-                {% endif %}
             {% endfor %}
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
+</html>

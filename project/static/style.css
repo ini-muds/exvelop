@@ -1,41 +1,85 @@
+/* 基本的なフォントと背景色を設定 */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
-#app {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-input[type="text"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-button {
+/* ヘッダーのスタイル */
+header {
+    background-color: #55c500; /* Qiitaの特徴的な緑色 */
+    color: white;
     padding: 10px 20px;
-    background-color: #5cb85c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ロゴとナビゲーションのリンク */
+header h1, header nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+/* 検索バーのスタイル */
+.search-bar {
+    display: flex;
+    margin: 20px 0;
+}
+
+.search-bar input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* 濃い緑色のボタン */
     color: white;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
-button:hover {
-    background-color: #4cae4c;
+/* メインコンテンツとサイドバーのレイアウト */
+.content {
+    display: flex;
+}
+
+/* 投稿リストのスタイル */
+.post {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* サイドバーのスタイル */
+.sidebar {
+    margin-left: 20px;
+    width: 300px;
+}
+
+/* サイドバーの広告などのカード */
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* フッターのスタイル */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
 }

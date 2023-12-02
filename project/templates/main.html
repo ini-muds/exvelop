@@ -9,8 +9,10 @@
     <header>
         <h2>開発体験共有SNS Exvelop</h2>
         <div class="search-container">
-            <input type="text" id="searchQuery" placeholder="投稿を検索" class="search-box">
-            <button onclick="searchPosts()" class="search-button">検索</button>
+            <form action="{{ url_for('main.posts_list') }}" method="post">
+                <input type="text" name="searchQuery" placeholder="投稿を検索" class="search-box">
+                <button type="submit" class="search-button">検索</button>
+            </form>
         </div>
         <nav class="navigation">
             <a href="{{ url_for('main.posts_list') }}" class="nav-link">ホーム</a>

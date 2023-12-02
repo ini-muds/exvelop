@@ -36,7 +36,14 @@ def create_post():
 @main.route('/detail/<int:id>')
 def detail_post(id):
     post = Post.query.filter_by(id=id).first()
-    return render_template('detail.html', post=post, user_id=current_user.id)
+
+    # ユーザーがログインしているかどうかをチェック
+    if current_user.is_authenticated:
+        user_id = current_user.id
+    else:
+        user_id = None
+
+    return render_template('detail.html', post=post, user_id=user_id)
 
 @main.route('/edit/<int:id>', methods=['GET', 'POST'])
 @login_required

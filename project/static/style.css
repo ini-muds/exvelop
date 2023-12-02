@@ -469,6 +469,7 @@ header h1, header nav a {
 .post-content p {
     margin-top: 10px;
     margin-bottom: 10px;
+    white-space: pre-line;
 }
 
 .btn-info {

@@ -50,22 +50,20 @@ def detail_post(id):
 def edit_post(id):
     post = Post.query.filter_by(id=id).first()
 
-    # 現在のユーザーが投稿の作成者であるか確認
     if post.user_id != current_user.id:
         flash('You do not have permission to edit this post.')
         return redirect(url_for('main.posts_list'))
 
-    # 投稿の編集
     if request.method == 'POST':
         post.title = request.form['title']
         post.description = request.form['description']
-        post.image_url = request.form['image_url']
-        post.code = request.form['code']
+        post.image_url = request.form.get('image_url')  # ここを修正
+        post.code = request.form.get('code')            # 念のためここも確認
         db.session.commit()
         flash('Post updated')
-        return redirect(url_for('main.detail_post', id=id))
+        return redirect(url_for('main.posts_list', id=id))
 
-    return render_template('edit.html', post=post, user_id=current_user.id)
+    return render_template('edit.html', post=post)
 
 @main.route('/delete/<int:id>')
 @login_required

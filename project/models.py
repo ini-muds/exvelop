@@ -19,5 +19,5 @@ class Post(db.Model):
     image_url = db.Column(db.String(200), nullable=True)
     code = db.Column(db.String(1000), nullable=True)
     user_id = db.Column(db.Integer, nullable=True)
-    timestamp = db.Column(db.DateTime, default=datetime.now(pytz.timezone('Asia/Tokyo')))
+    timestamp = db.Column(db.DateTime, default=lambda: datetime.now(pytz.timezone('Asia/Tokyo')).replace(microsecond=0))
     

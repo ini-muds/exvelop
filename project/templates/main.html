@@ -31,7 +31,7 @@
                 <div class="post">
                     <div class="post-title">{{ post.title }}</div>
                     <div class="post-author">作成者：{{ post.name }}</div>
-                    <div class="post-timestamp">作成日時: {{ post.timestamp }}</div>
+                    <div class="post-timestamp">作成日時: {{ post.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</div>
                     <div class="post-actions">
                         <a href="{{ url_for('main.detail_post', id=post.id) }}" class="post-detail">詳細</a>
                         {% if post.user_id == current_user.id %}

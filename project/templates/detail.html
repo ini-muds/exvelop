@@ -28,7 +28,7 @@
                 <p>{{ post.description }}</p>
                 <p>{{ post.image_url }}</p>
                 <p>{{ post.code }}</p>
-                <p>作成日時: {{ post.timestamp }}</p>
+                <p>作成日時: {{ post.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p>
                 <a href="{{ url_for('main.posts_list') }}" class="btn btn-info" role="button">
                     一覧画面に戻る
                 </a>

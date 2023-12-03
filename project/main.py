@@ -5,16 +5,16 @@ from . import db
 
 main = Blueprint('main', __name__)
 
-@main.route('/')
+@main.route('/', methods=['GET', 'POST'])
 def posts_list():
-    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    if request.method == 'POST':
+        query = request.form.get('searchQuery')
+        posts = Post.query.filter(Post.title.contains(query)).order_by(Post.timestamp.desc()).all()
+    else:
+        posts = Post.query.order_by(Post.timestamp.desc()).all()
+
     return render_template('main.html', posts=posts)
 
-@main.route('/search', methods=['GET'])
-def search_posts():
-    query = request.args.get('query')
-    posts = Post.query.filter(Post.title.contains(query) | Post.description.contains(query)).all()
-    return jsonify([{"name": post.name, "title": post.title, "description": post.description, "image_url": post.image_url, "code": post.code} for post in posts])
 
 @main.route('/post', methods=['GET', 'POST'])
 @login_required
